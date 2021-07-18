@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --site-background-color: #000;
+}
+
+.body {
+    background-color: var(--site-background-color);
+    min-height: 100vh;
+    /*display: flex;
+    flex-direction: column;
+    justify-content: space-between;*/
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    /*overflow-y: hidden;*/
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 0 20px;
+}
+
+/*standart style*/
+
+.btn {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.link {
+    padding: 10px 0;
+}
+
+.link:hover,
+.link:focus {
+    color: #fff;
+}
+
+
+/*header*/
+
+.header {
+    padding-top: 20px;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 900px) {
+    .header__container {
+        flex-direction: column;
+    }
+
+    .header__title {
+        margin-bottom: 20px;
+    }
+}
+
+.header__title {
+    min-width: min-content;
+}
+
+.header__title--text {
+    font-weight: 800;
+    font-size: 2.5em;
+}
+
+.header__nav--list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__nav--list--item:not(:last-child) {
+    margin-right: 20px;
+}
+
+.header__nav--list--btn {
+    background: transparent;
+    color: #fff;
+    outline: none;
+    --borderWidth: 3px;
+    background: var(--site-background-color);
+    position: relative;
+    border-radius: var(--borderWidth);
+}
+
+.header__nav--list--btn:hover::after,
+.header__nav--list--btn:focus::after,
+.header__nav--list--btn--active::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+}
+
+/*main*/
+
+.main {
+    margin-bottom: 35px;
+}
+
+.add__page {
+    display: none;
+}
+
+.main__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__form--fildset {
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input__text {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 600px) {
+    .main__form--fildset {
+        width: 350px;
+    }
+}
+
+.main__form--fildset:hover > .main__form--fildset--legend,
+.main__form--fildset:focus-within > .main__form--fildset--legend {
+    background: linear-gradient(135deg, #a166ab 0%, #1098ad 25%, #07b39b 50%, #6fba82 75%, #6fba82 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+}
+
+.main__form--fildset--lable {
+    text-transform: uppercase;
+}
+
+.main__form--fildset--input {
+    width: 100%;
+    height: 45px;
+    border: none;
+    padding: 5px;
+    color: #000;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.main__form--button {
+    outline: none;
+}
+
+.main__form--button:hover,
+.main__form--button:focus {
+    transition: 0.3s;
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    color: #fff;
+    background-color: transparent;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+    box-shadow: #fff 0 0 6px 1px;
+}
+
+.main__form--fildset--legend {
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+/*main to do list block*/
+
+.jobs__page {
+    /*display: none;*/
+}
+
+.todo__container {
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+@media (max-height: 620px) {
+    .todo__container {
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 900px) {
+    .todo__container {
+        max-height: 40vh;
+    }
+}
+
+.main__todo__list {
+
+}
+
+.main__todo__list--elem {
+    display: grid;
+    grid-template-columns: 70% 15% 15%;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+
+.main__todo__list--elem:first-child {
+    border-top: 2px solid #fff;
+}
+
+.main__todo__list--elem:last-child {
+    border-bottom: 2px solid #fff;
+}
+
+.main__todo__list--elem--text {
+    align-self: center;
+}
+
+.todo__list--elem--setings { /*btn block*/
+
+}
+
+.todo__list--elem--setings--btn {
+    border: 2px solid #fff;
+    width: 100px;
+}
+
+.todo__list--elem--setings--btn:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.todo__list--elem--setings--btn:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+.main__todo__list--elem--time {
+    align-self: center;
+    justify-self: end;
+}
+
+.date__span {
+    display: block;
+}
+
+/*footer*/
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+    padding-bottom: 20px;
+    min-height: min-content;
+}
+
+@media (max-width: 900px) {
+    .footer__container {
+        flex-direction: column;
+    }
+
+    .footer__socials--list {
+        margin-bottom: 10px;
+    }
+}
+
+.footer__socials--list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__socials--list--elem:not(:last-child) {
+    margin-right: 20px;
+}
+
+.footer__text {
+    text-align: center;
+}
+
+/*animations*/
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+.container__none {
+    display: none;
+}
+
+.container__show {
+    display: block;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!--font-family: 'Poppins', sans-serif;-->
+
+    <link rel="stylesheet" href="style.css">
+    <title>ToDoList</title>
+</head>
+<body class="body">
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__title">
+                <h1 class="header__title--text"><nobr>To Do List</nobr></h1>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav--list">
+                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn header__nav--list--btn--active" data-page-name="add__page">добавить задачу</button></li>
+                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn" data-page-name="jobs__page">текушие задачи</button></li>
+                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn" data-page-name="done__jobs__page">выполненные задачи</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="add__page page container__show">
+            <section class="container main__container">
+                <form action="#" class="main__form">
+                    <fieldset class="main__form--fildset">
+                        <legend class="main__form--fildset--legend">add a case to the list</legend>
+                        <div class="input__text">
+                            <label class="main__form--fildset--lable" for="input__text"> add here</label>
+                            <input class="main__form--fildset--input" type="text" id="input__text" placeholder="write here">
+                        </div>
+                        <div class="input__time">
+                            <label class="main__form--fildset--lable" for="input__date"> add deadLine</label>
+                            <input class="main__form--fildset--input" type="date" id="input__date">
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn main__form--button"> click for add</button>
+                </form>
+            </section>
+        </div>
+        <div class="jobs__page page">
+            <section class="container todo__container">
+                <ul class="main__todo__list">
+                    <!--<li class="main__todo__list--elem">
+                        <div class="main__todo__list--elem--text">Важное дело которе нужно обязательно и быстро сделать!</div>  
+                        <div class="todo__list--elem--setings">
+                             <button class="btn todo__list--elem--setings--btn delite-btn" type="button">Delite</button>
+                             <button class="btn todo__list--elem--setings--btn done-btn" type="button">is done</button>
+                        </div>
+                        <div class="main__todo__list--elem--time">
+                            <span class="days date__span">05 : days</span>
+                            <span class="hourse date__span">16 : hourse</span>
+                            <span class="minutes date__span">45 : minutes</span>
+                            <span class="seconds date__span">33 : seconds</span>
+                        </div>
+                    </li>-->
+                </ul>
+            </section>
+        </div>
+
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <ul class="footer__socials--list">
+                <li class="footer__socials--list--elem">
+                    <a href="#" class="footer__socials--list--link link">
+                        Instagram
+                    </a>
+                </li>
+                <li class="footer__socials--list--elem">
+                    <a href="#" class="footer__socials--list--link link">
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+            <p class="footer__text">
+                все права защищены </br>
+                by Anton Oshurek
+            </p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
