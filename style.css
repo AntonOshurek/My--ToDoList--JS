@@ -18,7 +18,7 @@
     grid-template-rows: min-content 1fr min-content;
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    /*overflow-y: hidden;*/
+    overflow-y: hidden;
 }
 
 .container {
@@ -144,10 +144,6 @@
     justify-content: center;
 }
 
-.input__text {
-    margin-bottom: 25px;
-}
-
 @media (max-width: 600px) {
     .main__form--fildset {
         width: 350px;
@@ -161,6 +157,10 @@
     -webkit-text-fill-color: transparent;
     animation: animatedgradient 3s ease alternate infinite;
     background-size: 300% 300%;
+}
+
+.input__text {
+    margin-bottom: 25px;
 }
 
 .main__form--fildset--lable {
@@ -200,7 +200,7 @@
 /*main to do list block*/
 
 .jobs__page {
-    /*display: none;*/
+    display: none;
 }
 
 .todo__container {
@@ -323,7 +323,30 @@
 	}
 }
 
-
+@keyframes shake {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translateX(-10px);
+              transform: translateX(-10px);
+    }
+  
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
+    }
+  }
 
 .container__none {
     display: none;
@@ -331,4 +354,11 @@
 
 .container__show {
     display: block;
+}
+
+.input__error {
+    -webkit-animation: shake 0.6s;
+            animation: shake 0.6s;
+            border: 3px solid red;
+            border-radius: 5px;
 }
