@@ -4,13 +4,17 @@
     box-sizing: border-box;
 }
 
+.page {
+    height: 100%;
+}
+
 :root {
     --site-background-color: #000;
 }
 
 .body {
     background-color: var(--site-background-color);
-    min-height: 100vh;
+    min-height: 100%;
     /*display: flex;
     flex-direction: column;
     justify-content: space-between;*/
@@ -18,7 +22,7 @@
     grid-template-rows: min-content 1fr min-content;
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 
 .container {
@@ -69,17 +73,19 @@
     }
 
     .header__title {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
-}
 
-.header__title {
-    min-width: min-content;
+    .header__title--text {
+        font-weight: 600;
+        font-size: 2em;
+    }
 }
 
 .header__title--text {
     font-weight: 800;
     font-size: 2.5em;
+    color: tomato;
 }
 
 .header__nav--list {
@@ -203,27 +209,6 @@
     display: none;
 }
 
-.todo__container {
-    max-height: 65vh;
-    overflow-y: auto;
-}
-
-@media (max-height: 620px) {
-    .todo__container {
-        max-height: 60vh;
-    }
-}
-
-@media (max-width: 900px) {
-    .todo__container {
-        max-height: 40vh;
-    }
-}
-
-.main__todo__list {
-
-}
-
 .main__todo__list--elem {
     display: grid;
     grid-template-columns: 70% 15% 15%;
@@ -247,12 +232,14 @@
 }
 
 .todo__list--elem--setings { /*btn block*/
-
+    align-self: center;
+    justify-self: end;
 }
 
 .todo__list--elem--setings--btn {
     border: 2px solid #fff;
     width: 100px;
+    display: block;
 }
 
 .todo__list--elem--setings--btn:not(:last-child) {
@@ -269,6 +256,29 @@
     justify-self: end;
 }
 
+@media (max-width: 750px) {
+    .main__todo__list--elem--time {
+        display: flex;
+        border-top: 2px solid #fff;
+        text-align: center;
+    }
+
+    .date__span {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .date__span:not(:last-child) {
+        border-right: 2px solid tomato;
+    }
+
+    .main__todo__list--elem {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 2fr 1fr;
+    }
+}
+
 .date__span {
     display: block;
 }
@@ -281,7 +291,6 @@
     align-items: center;
     height: min-content;
     padding-bottom: 20px;
-    min-height: min-content;
 }
 
 @media (max-width: 900px) {
