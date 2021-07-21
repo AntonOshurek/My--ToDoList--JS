@@ -251,13 +251,13 @@
     color: #fff;
 }
 
-.main__todo__list--elem--time {
+.main__todo__list--elem--timer {
     align-self: center;
     justify-self: end;
 }
 
 @media (max-width: 750px) {
-    .main__todo__list--elem--time {
+    .main__todo__list--elem--timer {
         display: flex;
         border-top: 2px solid #fff;
         text-align: center;
@@ -277,10 +277,6 @@
         grid-template-columns: 3fr 1fr;
         grid-template-rows: 2fr 1fr;
     }
-}
-
-.date__span {
-    display: block;
 }
 
 /*footer*/
