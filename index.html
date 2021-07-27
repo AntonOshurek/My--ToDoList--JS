@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="page">
+<html class="page" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,26 +12,30 @@
     <!--font-family: 'Poppins', sans-serif;-->
 
     <link rel="stylesheet" href="style.css">
-    <title>ToDoList</title>
+    <title>MyToDoList</title>
 </head>
 <body class="body">
-    <header class="header">
-        <div class="container header__container">
-            <div class="header__title">
-                <h1 class="header__title--text"><nobr>To Do List</nobr></h1>
+
+        <header class="header">
+            <div class="container header-container">
+                <div class="header__title">
+                    <h1 class="header__title-text">To Do List</h1>
+                </div>
+                <nav class="header-nav">
+                    <h2 class="visually-hidden">Навигация по разделам to do списка</h2>
+                    <ul class="header-nav__list">
+                        <li class="header-nav__item"><button class="btn header-nav__btn header-nav__btn--active" data-page-name="add__page">добавить задачу</button></li>
+                        <li class="header-nav__item"><button class="btn header-nav__btn" data-page-name="jobs__page">текушие задачи</button></li>
+                        <li class="header-nav__item"><button class="btn header-nav__btn" data-page-name="done__jobs__page">выполненные задачи</button></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="header__nav">
-                <ul class="header__nav--list">
-                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn header__nav--list--btn--active" data-page-name="add__page">добавить задачу</button></li>
-                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn" data-page-name="jobs__page">текушие задачи</button></li>
-                    <li class="header__nav--list--item"><button class="btn header__nav--list--btn" data-page-name="done__jobs__page">выполненные задачи</button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+        </header>
+
     <main class="main">
         <div class="add__page page container__show">
             <section class="container main__container">
+                <h2 class="visually-hidden">Форма для добавления записи в To Do List</h2>
                 <form action="#" class="main__form">
                     <fieldset class="main__form--fildset">
                         <legend class="main__form--fildset--legend">add a case to the list</legend>
@@ -50,9 +54,10 @@
         </div>
         <div class="jobs__page page">
             <section class="container todo__container">
+                <h2 class="visually-hidden">Мой список дел!</h2>
                 <ul class="main__todo__list">
                     <!--<li class="main__todo__list--elem">
-                        <div class="main__todo__list--elem--text">Важное дело которе нужно обязательно и быстро сделать!</div>  
+                        <div class="main__todo__list--elem--text">Важное дело которе нужно обязательно и быстро сделать!</div>
                         <div class="todo__list--elem--setings">
                              <button class="btn todo__list--elem--setings--btn delite-btn" type="button">Delite</button>
                              <button class="btn todo__list--elem--setings--btn done-btn" type="button">is done</button>
@@ -69,22 +74,22 @@
         </div>
     </main>
     <footer class="footer">
-        <div class="container footer__container">
-            <ul class="footer__socials--list">
-                <li class="footer__socials--list--elem">
-                    <a href="#" class="footer__socials--list--link link">
+        <div class="container footer-container">
+            <ul class="socials-list">
+                <li class="socials-list__elem">
+                    <a class="socials-list__link link" target="_blank" href="https://www.instagram.com/ooshurek/">
                         Instagram
                     </a>
                 </li>
-                <li class="footer__socials--list--elem">
-                    <a href="#" class="footer__socials--list--link link">
+                <li class="socials-list__elem">
+                    <a class="socials-list__link link" target="_blank" href="https://github.com/AntonOshurek">
                         GitHub
                     </a>
                 </li>
             </ul>
             <p class="footer__text">
-                все права защищены </br>
-                by Anton Oshurek
+                All rights reserved &reg; <br>
+                By Anton Oshurek
             </p>
         </div>
     </footer>
