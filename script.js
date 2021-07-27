@@ -1,5 +1,5 @@
 const showPage = function() {
-    const btnPage = document.querySelectorAll('.header__nav--list--btn');
+    const btnPage = document.querySelectorAll('.header-nav__btn');
     const page = document.querySelectorAll('.page');
     let pageName;
 
@@ -9,9 +9,9 @@ const showPage = function() {
 
     function selectPage() {
         btnPage.forEach(item => {
-            item.classList.remove('header__nav--list--btn--active');
+            item.classList.remove('header-nav__btn--active');
         });
-        this.classList.add('header__nav--list--btn--active');
+        this.classList.add('header-nav__btn--active');
         pageName = this.getAttribute('data-page-name');
         selectPageContent(pageName);
     };
@@ -41,7 +41,7 @@ function checkStorage () {
     };
 };
 
-checkStorage(); 
+checkStorage();
 
 btnAddMessege.addEventListener('click', createTodoElem);
 
@@ -53,7 +53,7 @@ function createTodoElem (e) {
 
         inputAddMessege.classList.remove('input__error');
         inputAddMessege.offsetWidth = inputAddMessege.offsetWidth;
-        inputAddMessege.classList.add('input__error');  
+        inputAddMessege.classList.add('input__error');
 
     } else {
         inputAddMessege.classList.remove('input__error');
@@ -63,13 +63,13 @@ function createTodoElem (e) {
             todo: inputAddMessege.value,
             deadline: inputAddDate.value,
         };
-    
+
         inputAddMessege.value = "";  //clear input text
         inputAddDate.value = "";    //clear input date
-    
+
         todoList.push(newTodo); //push new objeckt to "todo" array
         displayMesseges();  //create new todo list elem for page
-    
+
         localStorage.setItem('todo', JSON.stringify(todoList)); //передали в локалсторейдж
     }
 
@@ -82,7 +82,7 @@ function displayMesseges() {
 
         displayMessege += `
             <li class="main__todo__list--elem">
-            <div class="main__todo__list--elem--text">${item.todo}</div>  
+            <div class="main__todo__list--elem--text">${item.todo}</div>
             <div class="todo__list--elem--setings">
                 <button class="btn todo__list--elem--setings--btn delite-btn" data-delite-btn="${i}" type="button">Delite</button>
                 <button class="btn todo__list--elem--setings--btn done-btn" data-done-btn="${i}" type="button">is done</button>
@@ -114,14 +114,14 @@ function deliteListElem() {
     function deleteElem(e) {
         let btnIndex = e.target.getAttribute('data-delite-btn');
         todoList.splice(btnIndex, 1);
-        
-        localStorage.setItem('todo', JSON.stringify(todoList));     
+
+        localStorage.setItem('todo', JSON.stringify(todoList));
 
         if(todoList.length <= 0) {
             mainTodoList.innerHTML = 'Add new list elem';
         } else {
             displayMesseges();
-        }   
+        }
     };
 };
 
