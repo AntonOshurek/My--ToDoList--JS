@@ -89,20 +89,18 @@ function displayMesseges() {
             </div>
 
             <div class="todo-list__time">
-                <span class="days todo-list__date-span">05 : days</span>
-                <span class="hourse todo-list__date-span">16 : hourse</span>
-                <span class="minutes todo-list__date-span">45 : minutes</span>
-                <span class="seconds todo-list__date-span">33 : seconds</span>
+                <span class="days todo-list__date-span" id="days__${i}">days --</span>
+                <span class="hourse todo-list__date-span" id="hourse__${i}">hourse --</span>
+                <span class="minutes todo-list__date-span" id="minutes__${i}">minutes --</span>
+                <span class="seconds todo-list__date-span" id="seconds__${i}">seconds --</span>
 
             </div>
         </li>
         `;
 
         mainTodoList.innerHTML = displayMessege;
-        console.log(todoList);
         setClock(i, item.deadline);
     });
-
     deliteListElem();
 };
 
@@ -145,7 +143,7 @@ function gettime(endtime) {
     };
 };
 
-function getZero (num) {  //функция для добавления нуля 
+function getZero (num) {  //функция для добавления нуля
     if (num >= 0 && num < 10) {
         return `0${num}`;
     } else {
