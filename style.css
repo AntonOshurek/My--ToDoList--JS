@@ -68,6 +68,12 @@
     padding: 10px 0; /*four touch screen*/
 }
 
+@media (max-width: 600px) {
+    .link {
+        font-size: 1.2em;
+    }
+}
+
 .link:hover,
 .link:focus {
     color: var(--text-black-theme);
@@ -85,10 +91,32 @@
     align-items: center;
 }
 
+@media (max-width: 900px) {
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .header__title {
+        margin-bottom: 20px;
+    }
+}
+
 .header__title-text {
     font-weight: 700;
     font-size: 2.5em;
     color: var(--brand-color);
+}
+
+@media (max-width: 600px) {
+    .header__title-text {
+        font-size: 3em;
+    }
+
+    .header-nav__btn {
+        font-size: 1.2em;
+    }
 }
 
 .header-nav__list {
@@ -104,7 +132,7 @@
 
 .header-nav__btn {
     background: transparent;
-    color: #fff;
+    color: var(--text-black-theme);
     background: var(--site-background-black-theme);
     position: relative;
     --borderWidth: 3px;
@@ -140,6 +168,18 @@
 .main-form {
     width: 60%;
     margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .main-form {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-form {
+        width: 100%;
+    }
 }
 
 .main-form__fildset {
@@ -182,6 +222,13 @@
     color: #000;
     font-size: 1em;
     font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .main-form__button {
+        padding: 20px;
+        font-size: 1.2em;
+    }
 }
 
 .main-form__button:hover,
