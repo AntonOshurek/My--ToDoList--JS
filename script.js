@@ -18,7 +18,7 @@ const showPage = function() {
 
     function selectPageContent(pageName) {
         page.forEach(item => {
-            item.classList.contains(pageName) ? item.classList.add('container__show') : item.classList.remove('container__show');
+            item.classList.contains(pageName) ? item.classList.add('page-show') : item.classList.remove('page-show');
         });
     };
 };
@@ -27,10 +27,10 @@ showPage();
 
 //TODO logick
 
-const inputAddMessege = document.querySelector('#input__text');
-const inputAddDate = document.querySelector('#input__date');
-const btnAddMessege = document.querySelector('.main__form--button');
-const mainTodoList = document.querySelector('.main__todo__list'); //todo list
+const inputAddMessege = document.querySelector('#input-text');
+const inputAddDate = document.querySelector('#input-date');
+const btnAddMessege = document.querySelector('.main-form__button');
+const mainTodoList = document.querySelector('.todo-list'); //todo list
 
 let todoList = [];  //array for to Do List
 
@@ -80,19 +80,19 @@ function displayMesseges() {
 
     todoList.forEach(function(item, i) {
         displayMessege += `
-            <li class="main__todo__list--elem">
-            <div class="main__todo__list--elem--text">${item.todo}</div>
-            <div class="todo__list--elem--setings">
-                <button class="btn todo__list--elem--setings--btn delite-btn" data-delite-btn="${i}" type="button">Delite</button>
-                <button class="btn todo__list--elem--setings--btn done-btn" data-done-btn="${i}" type="button">is done</button>
+        <li class="todo-list__elem">
+            <div class="todo-list__text">В${item.todo}</div>
+            <div class="todo-list__buttons">
+                <button class="btn todo-list__btn delite-btn data-delite-btn="${i}"" type="button">Delite</button>
+                <button class="btn todo-list__btn done-btn data-done-btn="${i}" type="button">is done</button>
             </div>
-            <div class="main__todo__list--elem--time">
-                <span class="days date__span">05 : days</span>
-                <span class="hourse date__span">16 : hourse</span>
-                <span class="minutes date__span">45 : minutes</span>
-                <span class="seconds date__span">33 : seconds</span>
+            <div class="todo-list__time">
+                <span class="days todo-list__date-span">05 : days</span>
+                <span class="hourse todo-list__date-span">16 : hourse</span>
+                <span class="minutes todo-list__date-span">45 : minutes</span>
+                <span class="seconds todo-list__date-span">33 : seconds</span>
             </div>
-            </li>
+        </li>
         `;
         mainTodoList.innerHTML = displayMessege;
     });
