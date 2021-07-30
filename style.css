@@ -265,16 +265,81 @@
     align-self: center;
     color: var(--text-black-theme);
     position: relative;
+    margin-right: 20px;
+}
+
+@media (max-width: 900px) {
+    .todo-list__elem {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 20px;
+        border: var(--brand-color) 2px solid;
+        padding: 10px;
+        margin: 10px;
+
+    }
+
+    .todo-list__text {
+        grid-column: 1 / 3;
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 700px) {
+    .todo-list__elem {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr min-content min-content;
+        grid-template-areas:
+        "todo"
+        "todotimer"
+        "todobtn"
+        ;
+    }
+
+    .todo-list__text {
+        grid-area: todo;
+    }
+
+    .todo-list__buttons {
+        grid-area: todobtn;
+    }
+
+    .todo-list__time {
+        grid-area: todotimer;
+    }
 }
 
 /*btn block*/
 
 .todo-list__buttons{
+    width: min-content;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+    .todo-list__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .todo-list__btn:not(:last-child) {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .todo-list__buttons {
+        width: 100%;
+        justify-content: space-around;
+    }
 }
 
 .todo-list__buttons::after {
@@ -285,7 +350,7 @@
     transform: translateY(-50%);
     width: 3px;
     height: 60px;
-    background-color: var(--brand-color);
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
 }
 
 .todo-list__buttons::before {
@@ -304,6 +369,7 @@
     border: 2px solid var(--btn-white-bg);
     width: 100px;
     display: block;
+    margin: 10px;
 }
 
 .todo-list__btn:hover {
@@ -319,6 +385,26 @@
     justify-content: space-between;
     align-items: flex-end;
     color: #fff;
+}
+
+@media (max-width: 900px) {
+    .todo-list__time {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: #fff;
+    }
+}
+
+@media (max-width: 700px) {
+    .todo-list__time {
+        justify-content: center;
+    }
+
+    .todo-list__date-span:not(:last-child) {
+        margin-right: 20px;
+    }
 }
 
 /*footer*/
