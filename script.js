@@ -40,7 +40,6 @@ function checkStorage () {
         displayMesseges();
     };
 };
-
 checkStorage();
 
 btnAddMessege.addEventListener('click', createTodoElem);
@@ -51,7 +50,7 @@ function createTodoElem (e) {
     if(!inputAddMessege.value) {
         inputAddMessege.placeholder = "you have not entered data!";
 
-        inputAddMessege.classList.remove('input__error');
+        inputAddMessege.classList.remove('input__error'); /*error animation*/
         inputAddMessege.offsetWidth = inputAddMessege.offsetWidth;
         inputAddMessege.classList.add('input__error');
 
@@ -62,15 +61,18 @@ function createTodoElem (e) {
         let newTodo = {  //objeckt for new todo messege
             todo: inputAddMessege.value,
             deadline: inputAddDate.value,
+            adddate: new Date()
         };
 
         inputAddMessege.value = "";  //clear input text
         inputAddDate.value = "";    //clear input date
+        inputAddMessege.focus();
 
         todoList.push(newTodo); //push new objeckt to "todo" array
+        localStorage.setItem('todo', JSON.stringify(todoList)); //hand over to local storage
         displayMesseges();  //create new todo list elem for page
 
-        localStorage.setItem('todo', JSON.stringify(todoList)); //передали в локалсторейдж
+        console.log(localStorage);
     }
 
 }
@@ -89,7 +91,7 @@ function displayMesseges() {
             </div>
 
             <div class="todo-list__time">
-                <span class="days todo-list__date-span" id="days__${i}">days --</span>
+                <span class="days todo-list__date-span" ><span id="days__${i}"></span> days</span>
                 <span class="hourse todo-list__date-span" id="hourse__${i}">hourse --</span>
                 <span class="minutes todo-list__date-span" id="minutes__${i}">minutes --</span>
                 <span class="seconds todo-list__date-span" id="seconds__${i}">seconds --</span>
@@ -174,7 +176,6 @@ function setClock(selector, endtime) {
         }
     };
 };
-
 
 
 
