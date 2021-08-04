@@ -147,7 +147,7 @@
 
 @media (max-width: 600px) {
     .header__title {
-        font-size: 2.5em;
+        font-size: 1.5em;
     }
 
     .header-nav__btn {
@@ -193,6 +193,8 @@
 
 .main-form__fildset {
     padding: var(--standart-block-padding);
+    border-color: var(--brand-color);
+    border-width: 3px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
