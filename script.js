@@ -34,6 +34,34 @@ const mainTodoList = document.querySelector('.todo-list'); //todo list
 
 let todoList = [];  //array for to Do List
 
+let ToCompleteTasks = [];
+
+function addTocomplete () {
+       const donebtn = document.querySelectorAll('.done-btn');
+
+       donebtn.forEach(btn => {
+           btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                let btnIndex = e.target.getAttribute('data-done-btn');
+
+                let newComplete = JSON.stringify(todoList[btnIndex]);
+                ToCompleteTasks.push(JSON.parse(newComplete));
+
+                todoList.splice(btnIndex, 1);
+                localStorage.setItem('todocomplete', JSON.stringify(ToCompleteTasks));
+                localStorage.setItem('todo', JSON.stringify(todoList));
+
+                if(todoList.length <= 0) {
+                    mainTodoList.innerHTML = '<p class="none-list-elem-info">You have no scheduled tasks!</p>';
+                } else {
+                    displayMesseges();
+                }
+                console.log(localStorage);
+
+           })
+       })
+}
+
 function checkStorage () {
     if(localStorage.getItem('todo')) {  //подтягиваем данные из локалсторейдж
         todoList = JSON.parse(localStorage.getItem('todo')); //если они там есть то парсим их и записываем в массив
@@ -61,7 +89,9 @@ function createTodoElem (e) {
         let newTodo = {  //objeckt for new todo messege
             todo: inputAddMessege.value,
             deadline: inputAddDate.value,
-            adddate: new Date()
+            addyear: new Date().getFullYear(),
+            addmonth: new Date().getMonth(),
+            addday: new Date().getDate()
         };
 
         inputAddMessege.value = "";  //clear input text
@@ -74,7 +104,6 @@ function createTodoElem (e) {
 
         console.log(localStorage);
     }
-
 }
 
 function displayMesseges() {
@@ -82,101 +111,52 @@ function displayMesseges() {
 
     todoList.forEach(function(item, i) {
 
+        function getZero (num) { //get zero for date numbers
+            if (num >= 0 && num < 10) {
+                return `0${num}`;
+            } else {
+                return num;
+            }
+        }
+
         displayMessege += `
         <li class="todo-list__elem">
-            <div class="todo-list__text">В${item.todo}</div>
+            <div class="todo-list__text">
+                <p>${item.todo}</p>
+                <p class="add-date">Add date: <nobr>year-${item.addyear},</nobr> <nobr>Month-${getZero(item.addmonth +1)},</nobr> <nobr>Day-${getZero(item.addday)}</nobr></p>
+            </div>
             <div class="todo-list__buttons">
-                <button class="btn todo-list__btn delite-btn data-delite-btn="${i}"" type="button">Delite</button>
-                <button class="btn todo-list__btn done-btn data-done-btn="${i}" type="button">is done</button>
+                <button class="btn todo-list__btn delete-btn" data-delete-btn="${i}" type="button" aria-label="click to delete this task">Delete</button>
+                <button class="btn todo-list__btn done-btn" data-done-btn="${i}" type="button" aria-label="click to mark this task as completed!">is done</button>
             </div>
 
             <div class="todo-list__time">
-                <span class="days todo-list__date-span" ><span id="days__${i}"></span> days</span>
-                <span class="hourse todo-list__date-span" id="hourse__${i}">hourse --</span>
-                <span class="minutes todo-list__date-span" id="minutes__${i}">minutes --</span>
-                <span class="seconds todo-list__date-span" id="seconds__${i}">seconds --</span>
-
+                <span class="todo-list__date-span" id="date__${i}">Deadline &#9760; ${item.deadline}</span>
             </div>
         </li>
         `;
 
         mainTodoList.innerHTML = displayMessege;
-        setClock(i, item.deadline);
     });
     deliteListElem();
+    addTocomplete();
 };
 
 function deliteListElem() {
-    const deliteBtn = document.querySelectorAll('.delite-btn');
+    const deliteBtn = document.querySelectorAll('.delete-btn');
 
     deliteBtn.forEach(btn => {
-        btn.addEventListener('click', deleteElem);
-    });
+        btn.addEventListener('click', (e) => {
+            let btnIndex = e.target.getAttribute('data-delete-btn');
+            todoList.splice(btnIndex, 1);
 
-    function deleteElem(e) {
-        let btnIndex = e.target.getAttribute('data-delite-btn');
-        todoList.splice(btnIndex, 1);
+            localStorage.setItem('todo', JSON.stringify(todoList));
 
-        localStorage.setItem('todo', JSON.stringify(todoList));
-
-        if(todoList.length <= 0) {
-            mainTodoList.innerHTML = 'Add new list elem';
-        } else {
-            displayMesseges();
-        }
-    };
+            if(todoList.length <= 0) {
+                mainTodoList.innerHTML = '<p class="none-list-elem-info">You have no scheduled tasks!</p>';
+            } else {
+                displayMesseges();
+            }
+        })
+    })
 };
-
-//timer todo logick
-
-function gettime(endtime) {
-    const t = Date.parse(endtime) - Date.parse(new Date());
-    const days = Math.floor(t / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((t / (1000 * 60 * 60) % 24));  //получаем остаток от деления (остаток от 24 часов, что бы не выводилось больше часов чем есть в сутках)
-    const minutes = Math.floor((t / 1000 / 60) % 60);
-    const seconds = Math.floor((t / 1000) % 60);
-
-    return {
-        'total': t,
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-    };
-};
-
-function getZero (num) {  //функция для добавления нуля
-    if (num >= 0 && num < 10) {
-        return `0${num}`;
-    } else {
-        return num;
-    }
-}
-
-function setClock(selector, endtime) {
-    const days = document.querySelector(`#days__${selector}`);
-    const hours = document.querySelector(`#hourse__${selector}`);
-    const minutes = document.querySelector(`#minutes__${selector}`);
-    const seconds = document.querySelector(`#seconds__${selector}`);
-    const timeInterval = setInterval(updateClock, 1000);
-
-    updateClock(); //для устранения мигания таймера запускаем функцию один раз при загрузке страницы
-
-    function updateClock () {
-        const t = gettime(endtime);
-        //console.log(t);
-
-        days.innerHTML = getZero(t.days);
-        hours.innerHTML = getZero(t.hours);
-        minutes.innerHTML = getZero(t.minutes);
-        seconds.innerHTML = getZero(t.seconds);
-
-        if (t.total <= 0) {
-            clearInterval(timeInterval);
-        }
-    };
-};
-
-
-
-
