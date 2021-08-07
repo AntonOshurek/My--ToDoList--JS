@@ -499,6 +499,12 @@
     }
 }
 
+/*done jobs page styles*/
+
+.done__jobs__page {
+    display: none;
+}
+
 /*footer*/
 
 .footer-container {

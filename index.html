@@ -44,7 +44,7 @@
                 <h2 class="visually-hidden">form for add a new task for your to do list</h2>
                 <form action="#" class="main-form">
                     <fieldset class="main-form__fildset">
-                        <legend class="main-form__legend">add a case to the list</legend>
+                        <legend class="main-form__legend">add a task to the list</legend>
                         <div class="input-text">
                             <label class="main-form__lable" for="input-text">add here &#9997;</label>
                             <textarea class="main-form__input" id="input-text" cols="60" rows="6" placeholder="write here"></textarea>
@@ -61,7 +61,8 @@
         <div class="jobs-page page"> <!--page class for js-->
             <section class="container">
                 <h2 class="visually-hidden">My to do list!</h2>
-                <ul class="todo-list">
+                <ul class="todo-list todo-list--todo">
+                    <p class="none-list-elem-info">you don't have tasks scheduled</p>
                    <!-- <li class="todo-list__elem">
                         <div class="todo-list__text">An important matter that must be done quickly and without fail!</div>
                         <div class="todo-list__buttons">
@@ -76,6 +77,15 @@
                             <span class="seconds todo-list__date-span">33 : seconds</span>
                         </div>
                     </li>-->
+                </ul>
+            </section>
+        </div>
+
+        <div class="done__jobs__page page"> <!--page class for js-->
+            <section class="container">
+                <h2 class="visually-hidden">My to do list!</h2>
+                <ul class="todo-list todo-list--complete">
+                    <p class="none-list-elem-info">You don't have any tasks done!</p>
                 </ul>
             </section>
         </div>
