@@ -30,37 +30,12 @@ showPage();
 const inputAddMessege = document.querySelector('#input-text');
 const inputAddDate = document.querySelector('#input-date');
 const btnAddMessege = document.querySelector('.main-form__button');
-const mainTodoList = document.querySelector('.todo-list'); //todo list
+const mainTodoList = document.querySelector('.todo-list--todo'); //todo list
+const toDoListComplete = document.querySelector('.todo-list--complete');
 
 let todoList = [];  //array for to Do List
 
-let ToCompleteTasks = [];
-
-function addTocomplete () {
-       const donebtn = document.querySelectorAll('.done-btn');
-
-       donebtn.forEach(btn => {
-           btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                let btnIndex = e.target.getAttribute('data-done-btn');
-
-                let newComplete = JSON.stringify(todoList[btnIndex]);
-                ToCompleteTasks.push(JSON.parse(newComplete));
-
-                todoList.splice(btnIndex, 1);
-                localStorage.setItem('todocomplete', JSON.stringify(ToCompleteTasks));
-                localStorage.setItem('todo', JSON.stringify(todoList));
-
-                if(todoList.length <= 0) {
-                    mainTodoList.innerHTML = '<p class="none-list-elem-info">You have no scheduled tasks!</p>';
-                } else {
-                    displayMesseges();
-                }
-                console.log(localStorage);
-
-           })
-       })
-}
+let ToCompleteTasks = [];  //array for Complete to Do List
 
 function checkStorage () {
     if(localStorage.getItem('todo')) {  //подтягиваем данные из локалсторейдж
@@ -70,9 +45,15 @@ function checkStorage () {
 };
 checkStorage();
 
-btnAddMessege.addEventListener('click', createTodoElem);
+function checkCompleteStorage () {
+    if(localStorage.getItem('todocomplete')) {
+        ToCompleteTasks = JSON.parse(localStorage.getItem('todocomplete'));
+        displayCompleteMesseges();
+    };
+};
+checkCompleteStorage();
 
-function createTodoElem (e) {
+btnAddMessege.addEventListener('click', (e) => {
     e.preventDefault();
 
     if(!inputAddMessege.value) {
@@ -96,15 +77,13 @@ function createTodoElem (e) {
 
         inputAddMessege.value = "";  //clear input text
         inputAddDate.value = "";    //clear input date
-        inputAddMessege.focus();
+        /*inputAddMessege.focus();*/
 
         todoList.push(newTodo); //push new objeckt to "todo" array
         localStorage.setItem('todo', JSON.stringify(todoList)); //hand over to local storage
         displayMesseges();  //create new todo list elem for page
-
-        console.log(localStorage);
     }
-}
+});
 
 function displayMesseges() {
     let displayMessege = '';
@@ -153,9 +132,93 @@ function deliteListElem() {
             localStorage.setItem('todo', JSON.stringify(todoList));
 
             if(todoList.length <= 0) {
-                mainTodoList.innerHTML = '<p class="none-list-elem-info">You have no scheduled tasks!</p>';
+               mainTodoList.innerHTML = '<p class="none-list-elem-info">you don\'t have tasks scheduled</p>';
             } else {
                 displayMesseges();
+            }
+        })
+    })
+};
+
+/*completed tasks logicks*/
+
+function addTocomplete () {
+    const donebtn = document.querySelectorAll('.done-btn');
+
+    donebtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+             e.preventDefault();
+             let btnIndex = e.target.getAttribute('data-done-btn');
+
+             let newComplete = JSON.stringify(todoList[btnIndex]);
+             ToCompleteTasks.push(JSON.parse(newComplete));
+
+             todoList.splice(btnIndex, 1);
+
+             localStorage.setItem('todocomplete', JSON.stringify(ToCompleteTasks));
+             localStorage.setItem('todo', JSON.stringify(todoList));
+
+             if(todoList.length <= 0) {
+                 mainTodoList.innerHTML = '<p class="none-list-elem-info">you don\'t have tasks scheduled</p>';
+                 displayCompleteMesseges();
+
+             } else {
+                 displayMesseges();
+                 displayCompleteMesseges();
+             }
+        })
+    })
+}
+
+function displayCompleteMesseges() {
+    let displayMessege = '';
+
+    ToCompleteTasks.forEach(function(item, i) {
+
+        function getZero (num) { //get zero for date numbers
+            if (num >= 0 && num < 10) {
+                return `0${num}`;
+            } else {
+                return num;
+            }
+        }
+
+        displayMessege += `
+        <li class="todo-list__elem">
+            <div class="todo-list__text">
+                <p>${item.todo}</p>
+                <p class="add-date">Add date: <nobr>year-${item.addyear},</nobr> <nobr>Month-${getZero(item.addmonth +1)},</nobr> <nobr>Day-${getZero(item.addday)}</nobr></p>
+            </div>
+            <div class="todo-list__buttons">
+                <button class="btn todo-list__btn delete-btn" data-delete-btn="${i}" type="button" aria-label="click to delete this task">Delete</button>
+            </div>
+
+            <div class="todo-list__time">
+                <span class="todo-list__date-span" id="date__${i}">Deadline &#9760; ${item.deadline}</span>
+            </div>
+        </li>
+        `;
+
+        toDoListComplete.innerHTML = displayMessege;
+    });
+    deliteCompleteElem()
+};
+
+function deliteCompleteElem() {
+    const deliteBtn = document.querySelectorAll('.delete-btn');
+
+    deliteBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let btnIndex = e.target.getAttribute('data-delete-btn');
+            ToCompleteTasks.splice(btnIndex, 1);
+
+            localStorage.setItem('todocomplete', JSON.stringify(ToCompleteTasks));
+
+            if(ToCompleteTasks.length <= 0) {
+                toDoListComplete.innerHTML = '<p class="none-list-elem-info">You don\'t have any tasks done!</p>';
+                displayCompleteMesseges();
+            } else {
+                displayCompleteMesseges();
             }
         })
     })
