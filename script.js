@@ -190,7 +190,7 @@ function displayCompleteMesseges() {
                 <p class="add-date">Add date: <nobr>year-${item.addyear},</nobr> <nobr>Month-${getZero(item.addmonth +1)},</nobr> <nobr>Day-${getZero(item.addday)}</nobr></p>
             </div>
             <div class="todo-list__buttons">
-                <button class="btn todo-list__btn delete-btn" data-delete-btn="${i}" type="button" aria-label="click to delete this task">Delete</button>
+                <button class="btn todo-list__btn delete-comp-btn" data-comp-delete-btn="${i}" type="button" aria-label="click to delete this task">Delete</button>
             </div>
 
             <div class="todo-list__time">
@@ -205,11 +205,11 @@ function displayCompleteMesseges() {
 };
 
 function deliteCompleteElem() {
-    const deliteBtn = document.querySelectorAll('.delete-btn');
+    const deliteBtn = document.querySelectorAll('.delete-comp-btn');
 
     deliteBtn.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            let btnIndex = e.target.getAttribute('data-delete-btn');
+            let btnIndex = e.target.getAttribute('data-comp-delete-btn');
             ToCompleteTasks.splice(btnIndex, 1);
 
             localStorage.setItem('todocomplete', JSON.stringify(ToCompleteTasks));
